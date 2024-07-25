@@ -1,12 +1,17 @@
 package vehicle
 
 import (
+	"errors"
 	"fmt"
 )
 
 const ScooterAcceleration = 1
 
 type Scooter StandardCar
+
+func (s *Scooter) GetName() string {
+	return "機車"
+}
 
 func (s *Scooter) Start() {
 	if s.Engine.IsStart {
@@ -32,13 +37,15 @@ func (s *Scooter) Acceleration() {
 	fmt.Printf("加速度為%s\n", &s.Engine)
 }
 
-func (s *Scooter) IncreaseSpeed(time int) {
+func (s *Scooter) IncreaseSpeed(time int) (int, error) {
 	if !s.Engine.IsStart {
-		return
+		return 0, errors.New("engine must be running")
 	}
 
 	s.Speed += ScooterAcceleration
 	s.SpeedHistory[time] = s.Speed
+
+	return s.Speed, nil
 }
 
 func (s *Scooter) CurrentSpeed() {
