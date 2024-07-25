@@ -5,10 +5,16 @@ import (
 )
 
 func main() {
-	bootup(&vehicle.Scooter{})
-	bootup(&vehicle.Truck{})
-	bootup(&vehicle.RV{})
-	bootup(&vehicle.Car{})
+	vehicles := []vehicle.Vehicle{
+		&vehicle.Scooter{},
+		&vehicle.Truck{},
+		&vehicle.RV{},
+		&vehicle.Car{},
+	}
+
+	for _, val := range vehicles {
+		bootup(val)
+	}
 }
 
 func bootup(v vehicle.Vehicle) {
