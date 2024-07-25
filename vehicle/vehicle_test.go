@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestScooterEngine_Start(t *testing.T) {
+func TestEngine_SetAcceleration(t *testing.T) {
 	type fields struct {
 		Acceleration int
 	}
@@ -17,18 +17,16 @@ func TestScooterEngine_Start(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			e := &ScooterEngine{
-				Acceleration: tt.fields.Acceleration,
-			}
-			e.Start()
+			e := &Engine{}
+			e.SetAcceleration(1)
 			if e.Acceleration != tt.want {
-				t.Errorf("Start() = %v, want %v", e.Acceleration, tt.want)
+				t.Errorf("SetAcceleration() = %v, want %v", e.Acceleration, tt.want)
 			}
 		})
 	}
 }
 
-func TestScooterEngine_String(t *testing.T) {
+func TestEngine_String(t *testing.T) {
 	type fields struct {
 		Acceleration int
 	}
@@ -42,11 +40,11 @@ func TestScooterEngine_String(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &ScooterEngine{
+			s := &Engine{
 				Acceleration: tt.fields.Acceleration,
 			}
 			if got := s.String(); got != tt.want {
-				t.Errorf("ScooterEngine.String() = %v, want %v", got, tt.want)
+				t.Errorf("Engine.String() = %v, want %v", got, tt.want)
 			}
 		})
 	}
