@@ -4,10 +4,20 @@ import "fmt"
 
 type Vehicle interface {
 	Start()
+	Stop()
 	Acceleration()
+	IncreaseSpeed(time int)
+	CurrentSpeed()
+}
+
+type StandardCar struct {
+	Engine
+	Speed        int
+	SpeedHistory map[int]int
 }
 
 type Engine struct {
+	IsStart      bool
 	Acceleration int
 }
 
